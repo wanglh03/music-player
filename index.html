@@ -16,13 +16,19 @@
     <script charset="utf-8" src="chrome-extension://pngicgippofneelinabebobnkpmdiphn/js/btype.js"></script>
     <script type="text/javascript" charset="utf-8"
         src="chrome-extension://pngicgippofneelinabebobnkpmdiphn/js/chrome.js"></script>
+    <!-- 引入js -->
     <script src="https://gtbcamp.cn/js/standard.js"></script>
+    <script src="js/variable.js"></script>
+    <!-- 引入css -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/two_sides.css">
 </head>
 
 <body>
-    <h1>音乐空间</h1>
+    <h1 id="song-title">音乐空间</h1>
+    <img id="song-pic" src="https://gtbcamp.cn/img/avatar.png" alt="歌曲封面" title="" width="150px" height="150px"
+        border="">
+    <audio id="player" src="" loop controls preload></audio>
     <div class="column">
         <div class="column-left">
             <div class="resize-bar"></div>
@@ -30,18 +36,13 @@
             <div class="resize-save">
                 <!-- 歌曲ID：<input type="text" id="inputSongId" value="" style="width: 150px"> -->
                 <!-- <button id="confirmSongId" onclick="getSong($(" inputSongId").value;)">确定</button><br> -->
-                <div class="leftSide">
-                    <audio id="player" src="" loop controls preload></audio>
-                    <div id="lrcArea"></div>
-                </div>
+                <div id="lrcArea"></div>
             </div>
         </div>
         <div class="column-right">
             <input type="text" id="search" value="前前前世" style="width: 400px">
-            <button id="confirmSearch" onclick="getSearch()">搜索</button><br>
-            <div class="rightSide">
-                <div id="searchReturn"></div>
-            </div>
+            <button id="confirm-search" onclick="getSearch()">搜索</button><br>
+            <div id="search-return"></div>
         </div>
     </div>
 

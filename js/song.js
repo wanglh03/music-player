@@ -1,8 +1,19 @@
+//song.js
+
+//更新播放器，歌词，歌曲信息
 function getSong(song_id) {
     var lyric_url = 'https://gtbcamp.cn/neteasecloudmusic/lyric?id=' + song_id
     var song_url = 'https://gtbcamp.cn/neteasecloudmusic/song/url?id=' + song_id
 
     var lyric_data = ""
+
+    current_song_i = songs_id.indexOf(song_id);
+
+    $("song-pic").src = pic_url[current_song_i]
+
+    var title = "音乐空间 - 正在播放：" + songs_name[current_song_i]
+    document.title = title
+    $("song-title").innerHTML = "音乐空间 - 正在播放：" + songs_name[current_song_i]
 
     fetch(lyric_url)
         .then((response) => response.json())
@@ -17,13 +28,10 @@ function getSong(song_id) {
             $("player").src = json.data[0].url;
         })
 
-
     // sleep(500).then(() => {
     //     console.log(lyric_data.lrc.lyric)
     //     console.log(lyric_data.tlyric.lyric)
     // })
-
-
 
     sleep(500).then(() => {
 
@@ -164,7 +172,7 @@ function getSong(song_id) {
 
         var p = new musicPlayer({
             player: $('player'),
-            lrc: lyric_data.lrc.lyric,//$('lrc').innerHTML,
+            lrc: lyric_data.lrc.lyric,
             lrcArea: $('lrcArea')
         });
     })
