@@ -1,0 +1,33 @@
+#lrcArea ul,
+#lrcArea li,
+#lrcArea ol,
+#lrcArea p {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.container {
+    margin: 10px;
+}
+
+#lrcArea {
+    height: 1000px;
+    overflow: auto;
+    width: 800px;
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    margin-top: 10px;
+}
+
+#lrcArea ul {
+    font-size: 24px;
+    color: #5c5c5c;
+    line-height: 36px;
+}
+
+#lrcArea ul li {}
+
+#lrcArea ul li.cur {
+    color: #16CDF9;
+}
