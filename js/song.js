@@ -1,41 +1,36 @@
 //song.js
 
 //更新播放器，歌词，歌曲信息
-function getSong(song_id) {
-    var lyric_url = 'https://gtbcamp.cn/neteasecloudmusic/lyric?id=' + song_id
-    var song_url = 'https://gtbcamp.cn/neteasecloudmusic/song/url?id=' + song_id
+function getSong(songId) {
+    let lyricUrl = `https://gtbcamp.cn/neteasecloudmusic/lyric?id=${songId}`;
+    let songUrl = `https://gtbcamp.cn/neteasecloudmusic/song/url?id=${songId}`;
 
-    var lyric_data = ""
+    let lyricData = "";
 
-    current_song_i = songs_id.indexOf(song_id);
+    currentSongIndex = songsId.indexOf(+songId);
 
-    $("song-pic").src = pic_url[current_song_i]
+    $("song-pic").src = picUrl[currentSongIndex];
 
-    var title = "音乐空间 - 正在播放：" + songs_name[current_song_i]
-    document.title = title
-    $("song-title").innerHTML = "音乐空间 - 正在播放：" + songs_name[current_song_i]
+    let title = "音乐空间 - 正在播放：" + songsName[currentSongIndex];
+    document.title = title;
+    $("song-title").innerHTML = title;
 
-    fetch(lyric_url)
+    fetch(lyricUrl)
         .then((response) => response.json())
         .then((json) => {
             //console.log(json);
-            lyric_data = json;
+            lyricData = json;
         })
-    fetch(song_url)
+    fetch(songUrl)
         .then((response) => response.json())
         .then((json) => {
             //console.log(json);
             $("player").src = json.data[0].url;
         })
 
-    // sleep(500).then(() => {
-    //     console.log(lyric_data.lrc.lyric)
-    //     console.log(lyric_data.tlyric.lyric)
-    // })
-
     sleep(500).then(() => {
 
-        var musicPlayer = function () {
+        let musicPlayer = function () {
             return this.init.apply(this, arguments);
         };
 
@@ -52,7 +47,7 @@ function getSong(song_id) {
                 this.timestamp = [];
                 //处理歌词
                 this.handleLrc(this.lrc);
-                var that = this;
+                let that = this;
 
                 this.player.addEventListener('play',
                     function () {
@@ -71,7 +66,7 @@ function getSong(song_id) {
             },
             //格式化歌词
             handleLrc: function (lrc) {
-                var re = /(\[.+\])(.+)?/gm,
+                let re = /(\[.+\])(.+)?/gm,
                     ul = document.createElement('ul'),
                     frag = document.createDocumentFragment(),
                     tmpArr,
@@ -82,7 +77,7 @@ function getSong(song_id) {
                 ul.id = 'c';
                 this.lrcArea.appendChild(frag);
 
-                var txt = lrc.replace(re,
+                let txt = lrc.replace(re,
                     function (a, b, c) {
                         return b + (c === undefined ? '&nbsp;' : c) + '\n';
                     });
@@ -91,7 +86,7 @@ function getSong(song_id) {
 
                 //处理歌词
                 for (i = 0, len = tmpArr.length; i < len; i++) {
-                    var item = trim(tmpArr[i]);
+                    let item = trim(tmpArr[i]);
                     if (item.length > 0) {
                         this.lrcArr.push(item);
                     }
@@ -100,7 +95,7 @@ function getSong(song_id) {
                 frag = document.createDocumentFragment();
 
                 for (i = 0, len = this.lrcArr.length; i < len; i++) {
-                    var li = document.createElement('li');
+                    let li = document.createElement('li');
                     if (i === 0) {
                         li.className = 'cur';
                     }
@@ -119,7 +114,7 @@ function getSong(song_id) {
             //播放
             play: function () {
                 this.stop = false;
-                var that = this,
+                let that = this,
                     player = this.player,
                     i, len;
 
@@ -128,7 +123,7 @@ function getSong(song_id) {
                     that.curTime = player.currentTime;
 
                     for (i = 0, len = that.timestamp.length - 1; i < len; i++) {
-                        var prevTime = that.formatTimeStamp(that.timestamp[i]),
+                        let prevTime = that.formatTimeStamp(that.timestamp[i]),
                             nextTime = that.formatTimeStamp(that.timestamp[i + 1]);
                         //当前播放时间与前后歌词时间比较，如果位于这两者之间则转到该歌词
                         if (parseFloat(that.curTime) > prevTime && parseFloat(that.curTime) < nextTime) {
@@ -146,7 +141,7 @@ function getSong(song_id) {
             },
             //格式化时间
             formatTimeStamp: function (timestamp) {
-                var re = /([0-9]+):([0-9]+)\.([0-9]+)/i,
+                let re = /([0-9]+):([0-9]+)\.([0-9]+)/i,
                     seconds = timestamp.replace(re,
                         function (a, b, c, d) {
                             return Number(b * 60) + Number(c) + parseFloat('0.' + d);
@@ -155,7 +150,7 @@ function getSong(song_id) {
             },
             //歌词滚动
             scrollToLrc: function (idx) {
-                var ds = getOffset(this.li[idx]).top,
+                let ds = getOffset(this.li[idx]).top,
                     i,
                     len;
                 //如果歌词索引没有变动，则认为这句没有唱完，不处理
@@ -170,9 +165,9 @@ function getSong(song_id) {
             }
         };
 
-        var p = new musicPlayer({
+        let p = new musicPlayer({
             player: $('player'),
-            lrc: lyric_data.lrc.lyric,
+            lrc: lyricData.lrc.lyric,
             lrcArea: $('lrcArea')
         });
     })
