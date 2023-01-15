@@ -4,7 +4,7 @@
 function getSearch() {
     let searchKeywords = $("search").value;
 
-    let searchUrl = `https://gtbcamp.cn/neteasecloudmusic/cloudsearch?keywords=${searchKeywords}&type=1`;
+    let searchUrl = `${API_URL}cloudsearch?keywords=${searchKeywords}&type=1`;
 
     let songCount = 30;
 

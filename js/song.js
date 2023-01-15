@@ -2,8 +2,8 @@
 
 //更新播放器，歌词，歌曲信息
 function getSong(songId) {
-    let lyricUrl = `https://gtbcamp.cn/neteasecloudmusic/lyric?id=${songId}`;
-    let songUrl = `https://gtbcamp.cn/neteasecloudmusic/song/url?id=${songId}`;
+    let lyricUrl = `${API_URL}lyric?id=${songId}`;
+    let songUrl = `${API_URL}song/url?id=${songId}`;
 
     let lyricData = "";
 

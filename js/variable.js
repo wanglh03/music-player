@@ -1,5 +1,7 @@
 //variable.js
 
+const API_URL = "https://gtbcamp.cn/music-api/";
+
 //全局变量
 let songsId = [];
 let songsName = [];
