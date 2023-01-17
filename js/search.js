@@ -15,7 +15,7 @@ function getSearch() {
         .then((json) => {
             console.log(json);
             //songCount = json.result.songCount;
-            for (i = 0; i < songCount; i++) {
+            for (let i = 0; i < songCount; i++) {
                 songsName[i] = json.result.songs[i].name;
                 songsId[i] = json.result.songs[i].id;
                 picUrl[i] = json.result.songs[i].al.picUrl;
